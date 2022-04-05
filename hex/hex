@@ -46,7 +46,7 @@ while len(CONTENT) > 0:
 	CONTENT = state[0]
 	LINE = state[1]
 	
-	print( color(green, '\t%04x' % position), end='\t' )
+	print( color(green, '\t%08x' % position), end='\t' )
 	for BYTE in LINE:
 		print('%02x'%BYTE, end=' ')
 	print()
