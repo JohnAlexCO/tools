@@ -1,0 +1,55 @@
+#!/usr/bin/python3
+
+black = '30'
+red = '31'
+green = '32'
+yellow = '33'
+blue = '34'
+purple = '35'
+cyan = '36'
+white = '37'
+
+def color(c, text, bright=0):
+	return '\033[{b};{c}m'.replace(
+		'{b}', str(bright)
+	).replace(
+		'{c}', c
+	) + text + '\033[0;37m'
+
+import sys
+try:
+	filename = sys.argv[1]
+except Exception:
+	h = color(blue,'hex - ', 1)
+	print( h + 'Please provide an input file')
+else:
+	h = color(blue, 'hex - ', 1)
+	f = color(yellow, filename, 1)
+	print( h + '\t' + f)
+	
+	
+# returns the modified array and the sub-array
+def consume(array, amount):
+	if amount < len(array):
+		result = array[0:amount+1]
+		return array[amount+1:], result
+	else:
+		return [], array
+
+FILE = open(filename, 'rb')
+CONTENT = FILE.read()
+
+position = 0
+while len(CONTENT) > 0:
+	state = consume(CONTENT, 16)
+	CONTENT = state[0]
+	LINE = state[1]
+	
+	print( color(green, '\t%04x' % position), end='\t' )
+	for BYTE in LINE:
+		print('%02x'%BYTE, end=' ')
+	print()
+	position +=16
+print()
+	
+	
