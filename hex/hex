@@ -37,7 +37,11 @@ def consume(array, amount):
 	else:
 		return [], array
 
-FILE = open(filename, 'rb')
+try:
+	FILE = open(filename, 'rb')
+except Exception:
+	print(color(red,'\tError: ')+ 'file not found in directory')
+	exit()
 CONTENT = FILE.read()
 
 position = 0
@@ -52,5 +56,3 @@ while len(CONTENT) > 0:
 	print()
 	position +=16
 print()
-	
-	
