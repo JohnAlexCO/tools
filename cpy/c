@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+# Place this script at somewhere in $PATH
+# https://python-programs.com/python-subprocess-module-with-examples/
+# https://www.tutorialspoint.com/python/os_getcwd.htm
+import sys, os
+cwargs = sys.argv
+temp = cwargs[0]
+cwd = os.getcwd()
+
+if len(cwargs) == 1: 
+	print('C >>\t $PATH ~'+ temp)
+	print('\t Input the name of a local *.c script; it will be compiled and executed')
+if len(cwargs) > 2: 
+	print('C >>\t $PATH ~'+ temp)
+	print('\t Expected one argument, given %d.' % len(cwargs))
+elif len(sys.argv) == 2:
+	print('C >>\t $PATH ~'+ temp)
+	print('Given scriptnamed "%s", running gcc\n' % cwargs[1])
+	filename = cwd + '/' + cwargs[1]
+	output = cwd + '/' + cwargs[1].split('.')[0] + '.out'
+	argument = ' '.join(['gcc', filename, '-o', output, '&&', output])
+	os.system(argument)
