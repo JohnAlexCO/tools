@@ -22,6 +22,7 @@ try:
 except Exception:
 	h = color(blue,'hex - ', 1)
 	print( h + 'Please provide an input file')
+	exit()
 else:
 	h = color(blue, 'hex - ', 1)
 	f = color(yellow, filename, 1)
